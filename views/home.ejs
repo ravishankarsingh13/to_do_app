@@ -3,21 +3,33 @@
         <title>
             <%= title%>
         </title>
+        <link rel = "stylesheet" href="/css/home.css">
     </head>
     <body>
         <h1>todolist</h1>
         <div>
             <ul>
                 <% for(let i of task_list){ %>
-                    <li>
-                        <p><%= i.task%></p>
+                    <li class="contact">
+                        <div class="detail">
+                            <p><%= i.task%></p>
+                        </div>
+                        <div class="delete-button">
+                            <a href="/delete-task/?id=<%= i._id%>">
+                                <i class="fas fa-window-close"></i>
+                            </a>
+                            
+                        </div>
                     </li>
                 <% }%>
+
             </ul>
         </div>
         <form action="/add_task" method="POST">
             <input type="text" name="task" placeholder="Enter the task">
             <button type="submit">add</button>
         </form>
+        <script src="https://kit.fontawesome.com/5c14fb59bd.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="/js/home.js"></script>
     </body>
 </html>
