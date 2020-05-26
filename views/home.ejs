@@ -6,29 +6,62 @@
         <link rel = "stylesheet" href="/css/home.css">
     </head>
     <body>
-        <h1>todolist</h1>
-        <div>
-            <ul>
-                <% for(let i of task_list){ %>
-                    <li class="contact">
-                        <div class="detail">
-                            <p><%= i.task%></p>
-                        </div>
-                        <div class="delete-button">
-                            <a href="/delete-task/?id=<%= i._id%>">
-                                <i class="fas fa-window-close"></i>
-                            </a>
-                            
-                        </div>
-                    </li>
-                <% }%>
+        <div id="main">
+            <h1 id="page-heading">
+                <i class="fas fa-tasks"></i>
+                TODO App
+            </h1><hr>
+            <form action="/add_task" method="POST" id="form">
+                <label for="task">Description</label><br>
+                <input id="task-detail" type="text" name="task" placeholder="Enter the task">
+                <div id="task-description">
+                    <div id="category">
+                        <label for="category">Category</label><br>
+                        <select name="category" id="select">
+                            <option value="personal" >Personal</option>
+                            <option value="work" >Work</option>
+                            <option value="school">School</option>
+                            <option value="others">Others</option>
 
-            </ul>
+                        </select>
+
+                    </div>
+                    <div id="date">
+                        <label for="task">Due Date</label><br>
+                        <input type="date" name="date" placeholder="dd/mm/yy"><br>
+                    </div>
+                </div>
+                <hr>
+                <button  id="button" type="submit"><i class="fas fa-plus"></i>add-task</button>
+            </form><hr>
+            <div id="task-container">
+                <div class="task-section">
+                    <% for(let i of task_list){ %>
+                        <div class="task">
+                            <div class="detail">
+
+                                <input type="checkbox">
+                                <div class="display-task">
+                                    <%= i.task%>
+                                </div>
+                                <div class="display-category">
+                                    <%=i.category%>
+                                </div><br>
+                                <div class="display-date">
+                                    <%=i.date.toString().substr(0,15)%>
+                                </div>
+                            </div>
+                            <div class="delete-button">
+                                <a href="/delete-task/?id=<%= i._id%>">
+                                    <i class="fas fa-window-close"></i>
+                                </a>  
+                            </div>
+                        </div>
+                    <% }%>
+                    <p>0 task left</p>
+                </div>
+            </div>
         </div>
-        <form action="/add_task" method="POST">
-            <input type="text" name="task" placeholder="Enter the task">
-            <button type="submit">add</button>
-        </form>
         <script src="https://kit.fontawesome.com/5c14fb59bd.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="/js/home.js"></script>
     </body>

@@ -44,7 +44,9 @@ app.get('/',function(req,res){
 
 app.post('/add_task',function(req,res){
     Tasks.create({
-        task: req.body.task
+        task: req.body.task,
+        category:req.body.category,
+        date: req.body.date
     },function(err,newTask){
         if(err){
             console.log('error in creating the task');

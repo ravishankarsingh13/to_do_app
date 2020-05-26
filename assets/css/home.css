@@ -1,3 +1,124 @@
 body{
+    /* text-align: center; */
+    font-family: sans-serif;
+    margin: 0;
+    background-color: lightgray;
+}
+
+#main{
+    width: 50%;
+    height: auto;
+    border: 1px solid black;
+    margin: auto;
+    margin-top: 10px;
+    background-color: cornsilk;
+
+}
+#page-heading{
     text-align: center;
+}
+#form{
+    /* display: flex; */
+    /* flex-direction: row; */
+    margin: 0;
+
+}
+#form label{
+    font-weight: 300;
+    font-size: 25px;
+    color: darkmagenta;
+}
+#form #task-detail{
+    height: 40px;
+    width: 100%;
+    border: none;
+    margin: 0;
+    font-size: 20px;
+    padding: 5px;
+}
+#task-description{
+    display: flex;
+}
+#task-description label{
+    font-weight: 200;
+    font-size: 22px;
+    color:black;
+}
+#category{
+    width: 50%;
+    border: 1px solid black;
+    border-left:none ;
+}
+#select{
+    width: 95%;
+    height: 25px;
+    border: none;
+}
+#date{
+    width: 50%;
+    border: 1px solid black;
+}
+#date input{
+    width: 95%;
+    height: 25px;
+    border: none;
+}
+#button{
+    text-align: center;
+    height:35px;
+    width: 15%;
+    margin-left: 40%;
+    /* font-size: 30px; */
+}
+#form button i{
+    padding: 2px;
+    float: left;
+    height: 10px;
+    width: 10px;
+}
+
+.task{
+    padding: 3px 10px;
+    border: 1px solid white;
+    background-color: #6f92f9;
+    /* box-shadow: 1px 1px 1px 1px lightgray; */
+    color: white;
+    display: flex;
+}
+.task input{
+    padding: 3px;
+    padding-right: 15px;
+    margin-right: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+.task .detail{
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+
+}
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+.display-task{
+    padding: 5px;
+}
+.display-category{
+    padding: 5px;
+    float:right;
+}
+.task .delete-button{
+    width: 10%;
+    padding: 3px;
+    text-align: center;
+    margin-top: 5px;
+
+}
+.task .delete-button a{
+    background-color: white;
+    color: red;
 }
