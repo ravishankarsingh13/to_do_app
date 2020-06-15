@@ -3,6 +3,7 @@ body{
     font-family: sans-serif;
     margin: 0;
     background-color: lightgray;
+   
 }
 
 #main{
@@ -11,8 +12,7 @@ body{
     border: 1px solid black;
     margin: auto;
     margin-top: 10px;
-    background-color: cornsilk;
-
+    background-color: white;
 }
 #page-heading{
     text-align: center;
@@ -26,7 +26,8 @@ body{
 #form label{
     font-weight: 300;
     font-size: 25px;
-    color: darkmagenta;
+    color: rgb(0, 49, 139);
+    margin-left: 5px;
 }
 #form #task-detail{
     height: 40px;
@@ -53,6 +54,7 @@ body{
     width: 95%;
     height: 25px;
     border: none;
+    margin-left: 5px;
 }
 #date{
     width: 50%;
@@ -62,13 +64,27 @@ body{
     width: 95%;
     height: 25px;
     border: none;
+    margin-left: 5px;
 }
 #button{
     text-align: center;
     height:35px;
     width: 15%;
-    margin-left: 40%;
+    margin-bottom: 15px;
+    background-color: black;
+    color: white;
+    margin-left: 42%;
+    border-radius: 5px;
+    transition-duration: 0.5s;
+
     /* font-size: 30px; */
+}
+#button:hover{
+    opacity: .6;
+    cursor: pointer;
+}
+.filters{
+    text-align: center;
 }
 #form button i{
     padding: 2px;
@@ -77,48 +93,131 @@ body{
     width: 10px;
 }
 
+#task-container{
+    padding: 0;
+    margin-top: 20px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+}
 .task{
-    padding: 3px 10px;
+    border-bottom: 1px solid grey;
+    background-color: #b4e2fd;
+
+    /* padding: 3px 10px;
     border: 1px solid white;
     background-color: #6f92f9;
-    /* box-shadow: 1px 1px 1px 1px lightgray; */
+    box-shadow: 1px 1px 1px 1px lightgray;
     color: white;
-    display: flex;
+    display: flex; */
+}
+.task:hover{
+    background-color: lightgray;
+    transition: ease-out 0.9s;
 }
 .task input{
     padding: 3px;
     padding-right: 15px;
     margin-right: 10px;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 15px;
 }
-.task .detail{
-    font-size: 25px;
-    display: flex;
-    flex-direction: row;
+.details
+{
+    /* text-align: left; */
+    width: 80%;
+    display: inline-flex;
+    padding: 12px;
     flex-wrap: wrap;
-    width: 90%;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size:25px;
+    font-family: sans-serif;
+}
+.display-task{
+    font-size: 25px;
+}
 
+.category{
+    float: right;
+    margin-right: 10%;
+    margin-top: 3%;
+}
+.home{
+    background-color: teal;
+    color: white;
+    font-size: small;
+    font-family: cursive;
+    padding: 1px 5px;
+    font-style: italic;
+}
+/* style for work badge */
+.work{
+    background-color: violet;
+    color: white;
+    font-size: small;
+    font-family: cursive;
+    padding: 1px 5px;
+    font-style: italic;
+}
+/* style for school badge */
+.school{
+    background-color: orange;
+    color: white;
+    font-size: small;
+    font-family: cursive;
+    padding: 1px 5px;
+    font-style: italic;
+}
+/* style for personal BADGE */
+.personal{
+    background-color: blue;
+    color: white;
+    font-size: small;
+    font-family: cursive;
+    padding: 1px 5px;
+    font-style: italic;
+    opacity: 0.6;
+}
+/* style for OTHERS badge */
+.others{
+    background-color:  #ff6666;
+    color: white;
+    font-size: small;
+    font-family: cursive;
+    padding: 1px 5px;
+    font-style: italic;
+}
+.date{
+    font-size: 13px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: normal;
+    color: rgb(105, 103, 103);
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 30px;
+    margin-bottom: 5px;
 }
 input[type=date]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     display: none;
 }
-.display-task{
-    padding: 5px;
-}
-.display-category{
-    padding: 5px;
-    float:right;
-}
 .task .delete-button{
-    width: 10%;
+    width: 5%;
     padding: 3px;
     text-align: center;
-    margin-top: 5px;
+    margin-top: -6%;
+    float:right;
 
 }
 .task .delete-button a{
     background-color: white;
     color: red;
+}
+
+.number{
+    font-size: 19px;
+    margin: 10px;
 }

@@ -1,8 +1,6 @@
 const express = require('express');
 const path = require('path');
 const port = 8000;
-
-
 const db = require('./config/mongoose')
 const Tasks =require('./models/task');
 const app = express();
@@ -12,50 +10,44 @@ app.set('views',path.join(__dirname,'views'));
 app.use(express.urlencoded());
 app.use(express.static('assets'));
 
-var tasklist = [
-    {
-        task:"google"
-    },
-    {
-        task:"facebook"
-    }
-]
-
 app.get('/',function(req,res){
 
+    var n=0;
     Tasks.find({},function(err,tasks){
         if(err){
             console.log("error in assecessing the db");
             return;
         }
+        tasks.forEach(function(item){
+            if(item.completed==false)
+            n++;
+        });
         return res.render('home',{
          title: "tasklist",
-        task_list : tasks 
+        task_list : tasks,
+        count:n 
         })
     })
     
 });
 
-// app.get('/',function(req,res){
-//     return res.render('home',{
-//         title: "my todolist"
-//     });
-// });
 
 app.post('/add_task',function(req,res){
     Tasks.create({
         task: req.body.task,
         category:req.body.category,
-        date: req.body.date
+        date: req.body.date,
+        completed:false
     },function(err,newTask){
         if(err){
             console.log('error in creating the task');
             return;
         }
         console.log("***",newTask);
-        return res.redirect('/');
+        return res.redirect('back');
     })
 });
+
 
 app.get('/delete-task',function(req,res){
     let id=req.query.id;
@@ -65,7 +57,7 @@ app.get('/delete-task',function(req,res){
             console.log("error in deleting the task from db");
             return;
         }
-        return res.redirect('/');
+        return res.redirect('back');
     })
 })
 

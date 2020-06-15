@@ -17,51 +17,113 @@
                 <div id="task-description">
                     <div id="category">
                         <label for="category">Category</label><br>
-                        <select name="category" id="select">
-                            <option value="personal" >Personal</option>
-                            <option value="work" >Work</option>
-                            <option value="school">School</option>
-                            <option value="others">Others</option>
+                        <select name="category" id="select" required>
+                            <option value="Home">Home</option>
+                            <option value="Personal" >Personal</option>
+                            <option value="Work" >Work</option>
+                            <option value="School">School</option>
+                            <option value="Others">Others</option>
 
                         </select>
 
                     </div>
                     <div id="date">
                         <label for="task">Due Date</label><br>
-                        <input type="date" name="date" placeholder="dd/mm/yy"><br>
+                        <input type="date" name="date" placeholder="dd/mm/yy" required><br>
                     </div>
                 </div>
                 <hr>
                 <button  id="button" type="submit"><i class="fas fa-plus"></i>add-task</button>
-            </form><hr>
+            </form>
+            <div class="filters">   <!--Filter ALL,COMPLETE,INCOMPLETE-->
+                <input type="radio" id="all" name="filter" value="all" checked>
+                <label for="all" onclick="show_all()" title="Show all tasks">All</label>
+                <input type="radio" id="unchecked" name="filter" value="unchecked">
+                <label for="unchecked" onclick="show_incomplete()" title="Show Incomplete tasks">Incomplete</label>
+                <input type="radio" id="checked" name="filter" value="checked" >
+                <label for="checked" onclick="show_complete()" title="Show completed tasks">Completed</label>
+            </div><hr>
             <div id="task-container">
                 <div class="task-section">
                     <% for(let i of task_list){ %>
-                        <div class="task">
-                            <div class="detail">
+                        <% if(i.completed==true) {%>
+                            
+                            <div class="task check ">
+                                <div class="detail">
 
-                                <input type="checkbox">
-                                <div class="display-task">
-                                    <%= i.task%>
+                                    <!-- <input type="checkbox"> -->
+                                    <span class="display-task"><%= i.task%></span>&emsp;  
+                                    <%if(i.category==='Home'){%>  <!--check if BADGE 'HOME'-->
+                                    <span class="home category" ><%=i.category%></span>
+                                    <%}%>
+                                    <%if(i.category==='Work'){%>  <!--check if BADGE 'Work'-->
+                                        <span class="work category"><%=i.category%></span>
+                                    <%}%>
+                                    <%if(i.category==='School'){%>  <!--check if BADGE 'School'-->
+                                        <span class="school category"><%=i.category%></span>
+                                    <%}%>
+                                    <%if(i.category==='Personal'){%>  <!--check if BADGE 'Others'-->
+                                        <span class="personal category"><%=i.category%></span>
+                                    <%}%>
+                                    <%if(i.category==='Others'){%>  <!--check if BADGE 'HOME'-->
+                                        <span class="others category"><%=i.category%></span>
+                                    <%}%>
+                                    <div class="date">  <!--show date -->
+                                        <i class="fas fa-calendar-day"></i>
+                                        <span class="cal-text"><%=i.date.toString().substr(0,15)%></span>
+                                    </div>
                                 </div>
-                                <div class="display-category">
-                                    <%=i.category%>
-                                </div><br>
-                                <div class="display-date">
-                                    <%=i.date.toString().substr(0,15)%>
+                                <div class="delete-button">
+                                    <a href="/delete-task/?id=<%= i._id%>">
+                                        <i class="fas fa-window-close"></i>
+                                    </a>  
                                 </div>
                             </div>
-                            <div class="delete-button">
-                                <a href="/delete-task/?id=<%= i._id%>">
-                                    <i class="fas fa-window-close"></i>
-                                </a>  
+                        <% }%>
+                        <% if(i.completed==false) {%>
+                            
+                            <div class="task default">
+                                <div class="detail">
+
+                                    <input type="checkbox">
+                                    <span class="display-task" title="Click to mark as completed"><%= i.task%></span>&emsp;  
+                                    <%if(i.category==='Home'){%>  <!--check if BADGE 'HOME'-->
+                                    <span class="home category" ><%=i.category%></span>
+                                    <%}%>
+                                    <%if(i.category==='Work'){%>  <!--check if BADGE 'Work'-->
+                                        <span class="work category"><%=i.category%></span>
+                                    <%}%>
+                                    <%if(i.category==='School'){%>  <!--check if BADGE 'School'-->
+                                        <span class="school category"><%=i.category%></span>
+                                    <%}%>
+                                    <%if(i.category==='Personal'){%>  <!--check if BADGE 'Others'-->
+                                        <span class="personal category"><%=i.category%></span>
+                                    <%}%>
+                                    <%if(i.category==='Others'){%>  <!--check if BADGE 'HOME'-->
+                                        <span class="others category"><%=i.category%></span>
+                                    <%}%>
+                                    <div class="date">  <!--show date -->
+                                        <i class="fas fa-calendar-day"></i>
+                                        <span class="cal-text"><%=i.date.toString().substr(0,15)%></span>
+                                    </div>
+                                </div>
+                                <div class="delete-button">
+                                    <a href="/delete-task/?id=<%= i._id%>">
+                                        <i class="fas fa-window-close"></i>
+                                    </a>  
+                                </div>
                             </div>
-                        </div>
-                    <% }%>
-                    <p>0 task left</p>
+                        <% }%>
+                    <%}%>
+                    
                 </div>
+                
+            </div>
+            <div class="number">
+                <%= count%> tasks left
             </div>
         </div>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://kit.fontawesome.com/5c14fb59bd.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="/js/home.js"></script>
     </body>
